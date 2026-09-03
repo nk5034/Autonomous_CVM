@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cvm-catalyst-config
+  labels:
+    app.kubernetes.io/name: cvm-catalyst
+data:
+  API_PORT: "8000"
+  API_HOST: "0.0.0.0"
+  NEXT_PUBLIC_API_URL: "http://cvm-catalyst-backend:8000/api/v1"
+  LOG_LEVEL: "INFO"

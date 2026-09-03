@@ -1,0 +1,8 @@
+{{- if .Values.global.createNamespace }}
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: {{ include "cvm-catalyst.namespace" . }}
+  labels:
+    app.kubernetes.io/name: cvm-catalyst
+{{- end }}

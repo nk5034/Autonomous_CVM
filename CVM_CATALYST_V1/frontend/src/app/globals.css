@@ -1,0 +1,115 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 96%;
+    --foreground: 210 20% 14%;
+    --card: 0 0% 100%;
+    --card-foreground: 210 20% 14%;
+    --primary: 355 85% 47%;
+    --primary-foreground: 0 0% 100%;
+    --muted: 210 30% 96%;
+    --muted-foreground: 212 12% 38%;
+    --accent: 355 80% 95%;
+    --accent-foreground: 355 88% 34%;
+    --border: 216 19% 87%;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply min-h-screen bg-background text-foreground antialiased;
+    font-family: var(--font-body), sans-serif;
+    background-image:
+      radial-gradient(circle at 20% 16%, rgba(225, 0, 44, 0.13), transparent 52%),
+      radial-gradient(circle at 86% 24%, rgba(38, 43, 54, 0.08), transparent 48%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.95), rgba(243, 246, 248, 0.95));
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-heading), sans-serif;
+  }
+}
+
+@layer components {
+  .bg-grid {
+    background-image:
+      linear-gradient(rgba(57, 66, 78, 0.08) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(57, 66, 78, 0.08) 1px, transparent 1px);
+    background-size: 36px 36px;
+    mask-image: radial-gradient(circle at center, black, transparent 72%);
+  }
+}
+
+@layer utilities {
+  .bg-vf-red {
+    background-color: #e60000;
+  }
+
+  .text-vf-red {
+    color: #c20000;
+  }
+
+  .bg-vf-red-soft {
+    background-color: #ffe8e8;
+  }
+
+  .bg-vf-steel {
+    background-color: #2d3648;
+  }
+
+  .artifact-page {
+    @apply mx-auto w-full max-w-6xl space-y-4 p-4 md:p-6;
+  }
+
+  .card {
+    @apply rounded-2xl border border-border bg-card p-4 text-card-foreground shadow-enterprise;
+  }
+
+  .grid {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .grid.two {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+
+  @media (min-width: 1024px) {
+    .grid.two {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  .row {
+    @apply flex flex-wrap gap-2;
+  }
+
+  .pre {
+    @apply max-h-72 overflow-auto rounded-xl border border-border bg-muted p-3 text-xs;
+  }
+
+  .sim-kpis {
+    @apply grid gap-3 md:grid-cols-2 xl:grid-cols-4;
+  }
+
+  .sim-bars,
+  .sim-bar-row {
+    @apply grid gap-2;
+  }
+
+  .sim-track {
+    @apply h-2 w-full overflow-hidden rounded-full bg-muted;
+  }
+
+  .sim-fill {
+    @apply h-full rounded-full bg-primary;
+  }
+}

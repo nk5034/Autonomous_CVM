@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: cvm-catalyst
+  annotations:
+    kubernetes.io/ingress.class: nginx
+spec:
+  rules:
+    - host: cvm-catalyst.example.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: cvm-catalyst-frontend
+                port:
+                  number: 3000
+          - path: /api
+            pathType: Prefix
+            backend:
+              service:
+                name: cvm-catalyst-backend
+                port:
+                  number: 8000

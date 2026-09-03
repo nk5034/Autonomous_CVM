@@ -1,0 +1,46 @@
+﻿flowchart TD
+    S([Start]) --> BI[Briefing Intake]
+    BI --> BA[Briefing Author]
+    BA --> BV[Briefing Validation]
+    BV --> AD[Audience Design]
+    AD --> CC[Campaign Configuration]
+    CC --> TG[Test Generation]
+    TG --> TE[Test Execution]
+    TE --> SM[Simulation]
+    SM --> AB[AB Testing]
+    AB --> AP[Business Approval]
+    AP -->|Approved| DP[Deployment]
+    AP -->|Waiting Approval| WA[[Waiting Approval]]
+    WA --> RSM[Resume]
+    RSM --> AP
+    DP --> RP[Reporting]
+    RP --> E([End])
+
+    subgraph P9[Phase 9 Simulation Engine]
+        CCFG[Campaign Configuration] --> SIMENG[Simulation Engine]
+        SRULES[Selection Rules] --> SIMENG
+        CGROUP[Control Groups] --> SIMENG
+        VCONST[Volume Constraints] --> SIMENG
+        CPOLICY[Contact Policies] --> SIMENG
+        SIMENG --> OAUD[Expected Audience]
+        SIMENG --> OWAT[Waterfall Analysis]
+        SIMENG --> OREV[Revenue Forecast]
+        SIMENG --> OCOST[Cost Forecast]
+        SIMENG --> ORESP[Response Forecast]
+        SIMENG --> OROI[ROI Forecast]
+    end
+
+    SM -.uses.-> SIMENG
+
+    BI -->|Pause| PZ[[Paused]]
+    BA -->|Pause| PZ
+    BV -->|Pause| PZ
+    AD -->|Pause| PZ
+    CC -->|Pause| PZ
+    TG -->|Pause| PZ
+    TE -->|Pause| PZ
+    SM -->|Pause| PZ
+    AB -->|Pause| PZ
+    AP -->|Pause| PZ
+    DP -->|Pause| PZ
+    PZ --> RSM

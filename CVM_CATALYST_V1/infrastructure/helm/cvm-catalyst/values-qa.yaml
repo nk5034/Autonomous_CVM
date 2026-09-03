@@ -1,0 +1,15 @@
+global:
+  environment: qa
+  namespace: cvm-catalyst-qa
+
+backend:
+  replicaCount: 2
+
+frontend:
+  replicaCount: 2
+
+config:
+  LOG_LEVEL: "INFO"
+
+ingress:
+  host: qa.cvm-catalyst.example.com

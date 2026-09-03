@@ -1,0 +1,15 @@
+global:
+  environment: uat
+  namespace: cvm-catalyst-uat
+
+backend:
+  replicaCount: 2
+
+frontend:
+  replicaCount: 2
+
+config:
+  LOG_LEVEL: "INFO"
+
+ingress:
+  host: uat.cvm-catalyst.example.com

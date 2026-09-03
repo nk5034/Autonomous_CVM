@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: cvm-catalyst-qa
+  labels:
+    app.kubernetes.io/name: cvm-catalyst
+    app.kubernetes.io/environment: qa

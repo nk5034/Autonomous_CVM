@@ -1,0 +1,68 @@
+name: Rollback
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: "Environment to rollback"
+        required: true
+        type: choice
+        options: [DEV, QA, UAT, PROD]
+      release_name:
+        description: "Helm release name"
+        required: false
+        default: cvm-catalyst
+        type: string
+      revision:
+        description: "Target Helm revision (optional, defaults to previous)"
+        required: false
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  rollback:
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install kubectl
+        uses: azure/setup-kubectl@v4
+
+      - name: Install Helm
+        uses: azure/setup-helm@v4.3.0
+
+      - name: Set kubeconfig for DEV
+        if: ${{ inputs.environment == 'DEV' }}
+        run: |
+          mkdir -p ~/.kube
+          echo "${{ secrets.KUBECONFIG_DEV }}" > ~/.kube/config
+
+      - name: Set kubeconfig for QA
+        if: ${{ inputs.environment == 'QA' }}
+        run: |
+          mkdir -p ~/.kube
+          echo "${{ secrets.KUBECONFIG_QA }}" > ~/.kube/config
+
+      - name: Set kubeconfig for UAT
+        if: ${{ inputs.environment == 'UAT' }}
+        run: |
+          mkdir -p ~/.kube
+          echo "${{ secrets.KUBECONFIG_UAT }}" > ~/.kube/config
+
+      - name: Set kubeconfig for PROD
+        if: ${{ inputs.environment == 'PROD' }}
+        run: |
+          mkdir -p ~/.kube
+          echo "${{ secrets.KUBECONFIG_PROD }}" > ~/.kube/config
+
+      - name: Rollback release
+        run: |
+          chmod +x infrastructure/scripts/rollback.sh
+          infrastructure/scripts/rollback.sh \
+            "${{ inputs.environment }}" \
+            "${{ inputs.release_name }}" \
+            "${{ inputs.revision }}"

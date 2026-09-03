@@ -1,0 +1,15 @@
+global:
+  environment: dev
+  namespace: cvm-catalyst-dev
+
+backend:
+  replicaCount: 1
+
+frontend:
+  replicaCount: 1
+
+config:
+  LOG_LEVEL: "DEBUG"
+
+ingress:
+  host: dev.cvm-catalyst.example.com

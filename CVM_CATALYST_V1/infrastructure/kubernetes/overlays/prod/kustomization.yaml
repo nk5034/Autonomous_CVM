@@ -1,0 +1,17 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: cvm-catalyst-prod
+
+resources:
+  - namespace.yaml
+  - ../../base
+
+patchesStrategicMerge:
+  - patch.yaml
+
+images:
+  - name: ghcr.io/REPLACE_ME/cvm-catalyst-backend
+    newTag: prod-latest
+  - name: ghcr.io/REPLACE_ME/cvm-catalyst-frontend
+    newTag: prod-latest

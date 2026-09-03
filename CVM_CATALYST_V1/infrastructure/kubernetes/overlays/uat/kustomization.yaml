@@ -1,0 +1,17 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: cvm-catalyst-uat
+
+resources:
+  - namespace.yaml
+  - ../../base
+
+patchesStrategicMerge:
+  - patch.yaml
+
+images:
+  - name: ghcr.io/REPLACE_ME/cvm-catalyst-backend
+    newTag: uat-latest
+  - name: ghcr.io/REPLACE_ME/cvm-catalyst-frontend
+    newTag: uat-latest

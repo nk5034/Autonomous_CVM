@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: cvm-catalyst-backend
+  namespace: {{ include "cvm-catalyst.namespace" . }}
+  labels:
+    app.kubernetes.io/name: cvm-catalyst-backend
+spec:
+  type: ClusterIP
+  selector:
+    app.kubernetes.io/name: cvm-catalyst-backend
+  ports:
+    - name: http
+      port: 8000
+      targetPort: {{ .Values.backend.containerPort }}

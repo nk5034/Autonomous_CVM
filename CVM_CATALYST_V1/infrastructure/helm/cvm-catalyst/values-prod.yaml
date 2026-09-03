@@ -1,0 +1,15 @@
+global:
+  environment: prod
+  namespace: cvm-catalyst-prod
+
+backend:
+  replicaCount: 3
+
+frontend:
+  replicaCount: 3
+
+config:
+  LOG_LEVEL: "WARNING"
+
+ingress:
+  host: app.cvm-catalyst.example.com

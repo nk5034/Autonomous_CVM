@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cvm-catalyst-backend
+spec:
+  replicas: 1
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cvm-catalyst-frontend
+spec:
+  replicas: 1
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: cvm-catalyst
+spec:
+  rules:
+    - host: dev.cvm-catalyst.example.com
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cvm-catalyst-config
+data:
+  LOG_LEVEL: "DEBUG"
