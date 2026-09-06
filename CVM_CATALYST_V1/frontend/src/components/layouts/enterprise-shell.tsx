@@ -16,13 +16,13 @@ export function EnterpriseShell({ children }: { children: React.ReactNode }) {
       <div className="mx-auto flex w-full max-w-[1600px] gap-4 px-3 py-4 md:px-5 md:py-6">
         <aside className="hidden w-[300px] shrink-0 rounded-2xl border border-border/70 bg-white/95 p-4 shadow-enterprise lg:block">
           <div className="mb-4 rounded-xl bg-vf-red px-4 py-3 text-white">
-            <p className="text-xs uppercase tracking-[0.2em] text-white/80">Vodafone Enterprise</p>
+            <p className="text-xs uppercase tracking-[0.2em] text-white/80">VOIS Powered</p>
             <h1 className="text-xl font-semibold">CVM Catalyst</h1>
           </div>
 
           <div className="mb-5 flex items-center justify-between">
             <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Control Plane</p>
-            <Badge variant="neutral">Phase 11</Badge>
+            <Badge variant="neutral">Beta v1</Badge>
           </div>
 
           <nav className="space-y-1">

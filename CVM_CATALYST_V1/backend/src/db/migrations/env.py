@@ -1,14 +1,22 @@
 """Alembic migration environment."""
 from __future__ import annotations
+import os
+from dotenv import load_dotenv
+
+import sys
 
 from logging.config import fileConfig
-
+load_dotenv(".env", override=True)
 from alembic import context
 from sqlalchemy import engine_from_config, pool
+
+# Append the 'backend' directory to Python's path dynamically
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../../../")))
 
 from src.core.config.settings import settings
 from src.models.base import Base
 from src.models import entities as _entities  # noqa: F401
+
 
 config = context.config
 config.set_main_option("sqlalchemy.url", settings.DATABASE_URL)

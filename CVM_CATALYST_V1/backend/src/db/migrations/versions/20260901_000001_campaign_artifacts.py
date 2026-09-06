@@ -17,6 +17,15 @@ depends_on = None
 
 
 def upgrade() -> None:
+    # 1. Create the parent table FIRST
+    op.create_table(
+        "campaigns",
+        sa.Column("id", sa.Integer(), nullable=False),
+        sa.Column("name", sa.String(length=255), nullable=False),
+        # ... other columns ...
+        sa.PrimaryKeyConstraint("id")
+    )
+    
     op.create_table(
         "campaign_artifacts",
         sa.Column("id", sa.Integer(), nullable=False),
@@ -87,6 +96,8 @@ def downgrade() -> None:
 
     op.drop_index("ix_campaign_artifacts_campaign_id", table_name="campaign_artifacts")
     op.drop_table("campaign_artifacts")
+    
+    op.drop_table("campaigns")
 
     sa.Enum(name="campaignartifactstatus").drop(op.get_bind(), checkfirst=True)
     sa.Enum(name="campaignartifacttype").drop(op.get_bind(), checkfirst=True)

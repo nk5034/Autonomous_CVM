@@ -1,0 +1,1 @@
+C:/Github/CVM_CATALYST_V1/.venv/Lib/site-packages/pgembed/pginstall/bin/postgres.exe "-D" "C:/Github/CVM_CATALYST_V1/scripts/local_pg_data" "-h" "127.0.0.1" "-p" "59939"

@@ -16,7 +16,7 @@
     "strictFunctionTypes": true,
     "resolveJsonModule": true,
     "moduleResolution": "bundler",
-    "jsx": "preserve",
+    "jsx": "react-jsx",
     "incremental": true,
     "isolatedModules": true,
     "plugins": [
